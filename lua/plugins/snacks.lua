@@ -7,7 +7,7 @@ return {
       dashboard = { enabled = false },
       explorer = { enabled = false },
       input = { enabled = false },
-      picker = { enabled = false },
+      picker = { enabled = true },
       notifier = { enabled = false },
       quickfile = { enabled = false },
       scope = { enabled = false },
