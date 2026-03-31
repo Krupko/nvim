@@ -2,3 +2,43 @@
 require("config.lazy")
 require("config.vscode-css")
 require("plugins.pnpm-monorepo")
+--
+-- -- Проверка минимальной версии Neovim
+-- if vim.version().minor < 9 then
+--   vim.notify('This configuration requires Neovim 0.9 or higher!', vim.log.levels.ERROR)
+--   return
+-- end
+--
+-- -- Основные настройки
+-- vim.g.mapleader = ' '  -- Лидер-клавиша
+-- vim.opt.termguicolors = true
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
+-- vim.opt.tabstop = 2
+-- vim.opt.shiftwidth = 2
+-- vim.opt.expandtab = true
+--
+-- -- Загрузка конфигураций
+-- local ok, pnpm_config = pcall(require, 'config.pnpm-monorepo')
+-- if ok then
+--   pnpm_config.setup()
+-- else
+--   vim.notify('pnpm-monorepo config not found, skipping...', vim.log.levels.WARN)
+-- end
+--
+-- -- Загрузка плагинов (предполагается использование lazy.nvim)
+-- local lazy_ok, lazy = pcall(require, 'lazy')
+-- if not lazy_ok then
+--   vim.notify('lazy.nvim not installed! Run: git clone https://github.com/folke/lazy.nvim.git ~/.local/share/nvim/lazy/lazy.nvim', vim.log.levels.ERROR)
+--   return
+-- end
+--
+-- lazy.setup('plugins', {
+--   install = { colorscheme = { 'catppuccin' } },
+--   ui = { border = 'rounded' },
+-- })
+--
+-- -- Пользовательские команды
+-- vim.api.nvim_create_user_command('PnpmInstall', function()
+--   vim.cmd('!pnpm install')
+-- end, { desc = 'Run pnpm install' })
