@@ -2,4 +2,10 @@
 require("config.lazy")
 require("config.vscode-css")
 require("config.pnpm")
-require("plugins.pnpm-monorepo")
+
+vim.filetype.add({
+  extension = {
+    jsx = "javascriptreact",
+    tsx = "typescriptreact",
+  },
+})
