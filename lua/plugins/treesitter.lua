@@ -13,15 +13,18 @@ return {
         -- vim.notify("Treesitter not ready yet", vim.log.levels.WARN)
         return
       end
-      
+
       treesitter.setup({
         ensure_installed = {
           "lua",
           "typescript",
           "javascript",
+          "tsx",
+          "jsx",
           "json",
           "html",
           "css",
+          "scss",
           "markdown",
           "yaml",
         },

@@ -30,6 +30,25 @@ return {
               },
             },
           },
+          -- on_attach для keymaps
+          on_attach = function(client, bufnr)
+            local opts = { buffer = bufnr, noremap = true, silent = true }
+
+            -- TypeScript специфичные keymaps
+            vim.keymap.set(
+              "n",
+              "<leader>co",
+              "<cmd>TypescriptOrganizeImports<CR>",
+              { buffer = bufnr, desc = "Organize Imports" }
+            )
+            vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { buffer = bufnr, desc = "Rename File" })
+            vim.keymap.set(
+              "n",
+              "<leader>cu",
+              "<cmd>TypescriptRemoveUnused<CR>",
+              { buffer = bufnr, desc = "Remove Unused" }
+            )
+          end,
         },
 
         eslint = {
@@ -56,6 +75,35 @@ return {
           on_attach = function(client, _bufnr)
             client.server_capabilities.diagnosticProvider = false
           end,
+        },
+
+        tailwindcss = {
+          filetypes = {
+            "html",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "css",
+            "scss",
+          },
+          root_dir = function(fname)
+            local root_markers = { "tailwind.config.js", "tailwind.config.ts", "package.json", ".git" }
+            return require("lspconfig").util.root_pattern(unpack(root_markers))(fname)
+          end,
+        },
+
+        emmet_ls = {
+          filetypes = {
+            "html",
+            "javascriptreact",
+            "typescriptreact",
+            "jsx",
+            "tsx",
+            "css",
+            "scss",
+            "less",
+          },
         },
       },
     },
@@ -94,3 +142,4 @@ return {
     },
   },
 }
+
