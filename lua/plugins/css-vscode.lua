@@ -52,19 +52,4 @@ return {
     end,
   },
 
-  -- =============================================
-  -- 4. ИКОНКИ
-  -- =============================================
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-    opts = {
-      override = {
-        css = { icon = "", color = "#42a5f5", name = "Css" },
-        scss = { icon = "", color = "#f06292", name = "Scss" },
-        sass = { icon = "", color = "#f06292", name = "Sass" },
-        html = { icon = "", color = "#e44d26", name = "Html" },
-      },
-    },
-  },
-}
+  }
