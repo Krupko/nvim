@@ -18,6 +18,7 @@ return {
         "prettier",
         "prettierd",
         "eslint_d",
+        "prisma",
       },
       ui = {
         border = "rounded",
