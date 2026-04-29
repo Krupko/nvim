@@ -2,13 +2,15 @@
 -- Автокоманды для React/Node.js разработки
 
 -- Автоформатирование при сохранении
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.css", "*.scss" },
-  callback = function()
-    vim.lsp.buf.format({ async = false })
-  end,
-  group = vim.api.nvim_create_augroup("AutoFormat", { clear = true }),
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.css", "*.scss" },
+--   callback = function()
+--     vim.lsp.buf.format({ async = false })
+--   end,
+--   group = vim.api.nvim_create_augroup("AutoFormat", { clear = true }),
+-- })
+-- не раскоментировать - это ручное форматирование, сейчас работает
+-- автоматическое!
 
 -- Автоустановка filetype для JSX/TSX
 vim.api.nvim_create_autocmd("BufReadPost", {

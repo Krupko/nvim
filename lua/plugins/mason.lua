@@ -18,7 +18,7 @@ return {
         "prettier",
         "prettierd",
         "eslint_d",
-        "prisma",
+        "prisma-language-server",
       },
       ui = {
         border = "rounded",
