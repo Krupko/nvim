@@ -10,7 +10,7 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>", { desc = "Переместить ст
 -- PNPM монорепа
 vim.keymap.set("n", "<leader>pr", "<cmd>PnpmRoot<CR>", { desc = "PNPM Root" })
 vim.keymap.set("n", "<leader>pp", "<cmd>PnpmPackage<CR>", { desc = "Current Package" })
-vim.keymap.set("n", "<leader>pi", "<cmd>PnpmInstall<CR>", { desc = "PNPM Install" })
+-- vim.keymap.set("n", "<leader>pi", "<cmd>PnpmInstall<CR>", { desc = "PNPM Install" })
 vim.keymap.set("n", "<leader>pu", "<cmd>PnpmUpdate<CR>", { desc = "PNPM Update" })
 vim.keymap.set("n", "<leader>pb", "<cmd>PnpmBuild<CR>", { desc = "Build Package" })
 vim.keymap.set("n", "<leader>pd", "<cmd>PnpmDev<CR>", { desc = "Dev Package" })

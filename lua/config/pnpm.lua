@@ -31,11 +31,24 @@ local function get_current_package()
   return nil
 end
 
+-- local function run_pnpm_filter(cmd)
+--   local pkg = get_current_package()
+--   local full_cmd = pkg and string.format("pnpm --filter @ideanick/%s %s", pkg, cmd) or cmd
+
+--   vim.system(full_cmd, { text = true }, function(obj)
+--     if obj.code ~= 0 then
+--       vim.notify("Command failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
+--     else
+--       vim.notify(obj.stdout or "Command executed successfully", vim.log.levels.INFO)
+--     end
+--   end)
+-- end
+
 local function run_pnpm_filter(cmd)
   local pkg = get_current_package()
-  local full_cmd = pkg and string.format("pnpm --filter @ideanick/%s %s", pkg, cmd) or cmd
+  local args = pkg and { "pnpm", "--filter", "@ideanick/" .. pkg, cmd } or { "pnpm", cmd }
 
-  vim.system(full_cmd, { text = true }, function(obj)
+  vim.system(args, { text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Command failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else

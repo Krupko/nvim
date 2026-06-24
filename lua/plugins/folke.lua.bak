@@ -1,0 +1,18 @@
+return {
+  "folke/tokyonight.nvim",
+  priority = 1000,
+  lazy = false,
+  opts = {
+    transparent = true, -- Твой любимый прозрачный фон
+    terminal_colors = true, -- Поддержка цветов терминала[cite: 42]
+    styles = {
+      style = "storm",
+      sidebars = "transparent",
+      floats = "transparent",
+    },
+  },
+  config = function(_, opts)
+    require("tokyonight").setup(opts)
+    vim.cmd.colorscheme("tokyonight")
+  end,
+}
