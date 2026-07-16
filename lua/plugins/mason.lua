@@ -19,6 +19,10 @@ return {
         "prettierd",
         "eslint_d",
         "prisma-language-server",
+        "intelephense",
+        "php-cs-fixer",
+        "phpstan",
+        "psalm",
       },
       ui = {
         border = "rounded",
