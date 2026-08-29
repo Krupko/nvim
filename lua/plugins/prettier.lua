@@ -14,7 +14,7 @@ return {
         html = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
-        prisma = { "prisma" },
+        prisma = { "prisma-fmt" },
       },
       formatters = {
         prettier = {

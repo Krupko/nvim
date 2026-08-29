@@ -14,6 +14,7 @@ return {
         "html-lsp",
         "css-lsp",
         "lua-language-server",
+        "astro-language-server",
         -- Форматтеры
         "prettier",
         "prettierd",
