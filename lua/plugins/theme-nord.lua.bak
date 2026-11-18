@@ -1,0 +1,33 @@
+
+return {
+    "gbprod/nord.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nord").setup({
+        transparent = true, -- Включает прозрачный фон [citation:1][citation:5]
+      })
+      vim.cmd.colorscheme("nord")
+    -- Дополнительная прозрачность для панелей и вкладок
+      local function make_extra_transparent()
+        vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE", ctermbg = "NONE" })
+        vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
+        vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "NONE", ctermbg = "NONE" })
+        
+        vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "NONE", ctermbg = "NONE" })
+        vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = "NONE", ctermbg = "NONE" })
+        vim.api.nvim_set_hl(0, "BufferLineBuffer", { bg = "NONE", ctermbg = "NONE" })
+        vim.api.nvim_set_hl(0, "BufferLineBufferVisible", { bg = "NONE", ctermbg = "NONE" })
+      end
+
+      make_extra_transparent()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = make_extra_transparent,
+      })
+    end,
+  
+    install = {
+      colorscheme = { "nord" },
+    },
+  }

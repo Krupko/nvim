@@ -3,10 +3,10 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    style = "night",  -- Варианты цветов ("storm" "night" "moon" "day")
     transparent = true, -- Твой любимый прозрачный фон
     terminal_colors = true, -- Поддержка цветов терминала[cite: 42]
     styles = {
-      style = "storm",
       sidebars = "transparent",
       floats = "transparent",
     },

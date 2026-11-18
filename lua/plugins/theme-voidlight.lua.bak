@@ -1,0 +1,46 @@
+-- return {
+--   "christerso/voidlight-lazyvim-theme",
+--   name = "voidlight",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require("voidlight").setup()
+--     vim.cmd.colorscheme "voidlight"
+
+--     local function make_transparent()
+--       -- 1. Основные окна
+--       vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE", ctermbg = "NONE" })
+
+--       -- 2. Строка состояния и нижние панели
+--       vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE", ctermbg = "NONE" })
+
+--       -- 3. Neo-tree (боковая панель)
+--       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = "NONE", ctermbg = "NONE" })
+      
+--       -- 4. Панель диагностики (Trouble)
+--       vim.api.nvim_set_hl(0, "TroubleNormal", { bg = "NONE", ctermbg = "NONE" })
+--       vim.api.nvim_set_hl(0, "TroubleNormalNC", { bg = "NONE", ctermbg = "NONE" })
+
+--       -- 5. Панель вкладок (bufferline)
+--       vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "NONE", ctermbg = "NONE" }) -- Фон пустого места за вкладками
+--       vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = "NONE", ctermbg = "NONE" }) -- Фон неактивных вкладок
+--       vim.api.nvim_set_hl(0, "BufferLineBuffer", { bg = "NONE", ctermbg = "NONE" }) 
+--       vim.api.nvim_set_hl(0, "BufferLineBufferVisible", { bg = "NONE", ctermbg = "NONE" })
+--     end
+
+--     make_transparent()
+
+--     vim.api.nvim_create_autocmd("ColorScheme", {
+--       callback = make_transparent,
+--     })
+--   end,
+-- }

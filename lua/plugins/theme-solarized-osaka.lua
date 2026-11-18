@@ -13,7 +13,7 @@ return {
     },
     config = function(_, opts)
       require("solarized-osaka").setup(opts)
-      vim.cmd.colorscheme("solarized-osaka") -- Установка активной темы
+      vim.cmd.colorscheme("solarized-osaka-vivid") -- Установка активной темы
     end,
   },
 }
