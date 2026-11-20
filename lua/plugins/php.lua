@@ -102,13 +102,7 @@ return {
               },
             },
           },
-          on_attach = function(client, bufnr)
-            local opts = { buffer = bufnr, noremap = true, silent = true }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-          end,
+          -- on_attach намеренно не задан: LazyVim уже настраивает gd, K, <leader>rn, <leader>ca.
         },
       },
     },
@@ -117,33 +111,29 @@ return {
   -- Форматирование для PHP
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        php = { "php_cs_fixer", "phpcbf" },
-      },
-      formatters = {
-        php_cs_fixer = {
-          command = "php-cs-fixer",
-          args = { "fix", "--rules=@PSR12,@PhpCsFixer", "$FILENAME" },
-          stdin = false,
-        },
-        phpcbf = {
-          command = "phpcbf",
-          args = { "--standard=PSR12", "$FILENAME" },
-          stdin = false,
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.formatters_by_ft = opts.formatters_by_ft or {}
+      -- phpcbf не установлен в системе, поэтому оставлен только php_cs_fixer.
+      opts.formatters_by_ft.php = { "php_cs_fixer" }
+
+      opts.formatters = opts.formatters or {}
+      opts.formatters.php_cs_fixer = {
+        command = "php-cs-fixer",
+        args = { "fix", "--rules=@PSR12,@PhpCsFixer", "$FILENAME" },
+        stdin = false,
+      }
+    end,
   },
 
   -- Линтинг для PHP
   {
     "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
+    opts = function(_, opts)
+      opts.linters_by_ft = vim.tbl_deep_extend("force", opts.linters_by_ft or {}, {
         php = { "phpstan", "psalm" },
-      },
-      linters = {
+      })
+
+      opts.linters = vim.tbl_deep_extend("force", opts.linters or {}, {
         phpstan = {
           cmd = "phpstan",
           args = { "analyse", "--error-format=raw", "$FILENAME" },
@@ -172,7 +162,7 @@ return {
             return diagnostics
           end,
         },
-      },
-    },
+      })
+    end,
   },
 }

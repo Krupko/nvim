@@ -1,3 +1,4 @@
+---- ~/.config/nvim/lua/plugins/snacks.lua
 return {
   {
     "folke/snacks.nvim",
@@ -8,10 +9,15 @@ return {
       explorer = { enabled = false },
       input = { enabled = false },
       picker = { enabled = true },
-      notifier = { enabled = false },
+      -- ✅ ВКЛЮЧАЕМ: красивые уведомления
+      notifier = {
+        enabled = true,
+        history = 50,
+      },
       quickfile = { enabled = false },
       scope = { enabled = false },
-      scroll = { enabled = false },
+      -- ✅ ВКЛЮЧАЕМ: плавная прокрутка
+      scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = false },
     },

@@ -14,7 +14,9 @@ return {
         html = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
-        prisma = { "prisma-fmt" },
+        -- prisma намеренно не указан: conform не поддерживает prisma-fmt.
+        -- Форматирование Prisma выполняется через LSP prismals.
+        -- PHP намеренно не указан здесь: им управляет lua/plugins/php.lua
       },
       formatters = {
         prettier = {

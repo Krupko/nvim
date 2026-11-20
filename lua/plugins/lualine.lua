@@ -3,8 +3,11 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
-      -- Добавляем React индикатор
-      table.insert(opts.sections.lualine_x, {
+      opts.sections = opts.sections or {}
+      opts.sections.lualine_x = opts.sections.lualine_x or {}
+
+      -- Вставляем React-индикатор в начало секции, сохраняя порядок стандартных элементов
+      table.insert(opts.sections.lualine_x, 1, {
         function()
           local ft = vim.bo.filetype
           if ft == "javascriptreact" then
@@ -20,6 +23,7 @@ return {
         end,
         color = { fg = "#61dafb" },
       })
+
       return opts
     end,
   },

@@ -27,24 +27,24 @@ return {
   -- Настройка Telescope для поиска в скрытых папках
   {
     "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        vimgrep_arguments = {
-          "rg",
-          "--hidden",
-          "--glob=!.git",
-          "--glob=!node_modules",
-        },
-        file_ignore_patterns = {
-          "node_modules/",
-          ".git/",
-        },
-      },
-      pickers = {
-        find_files = {
-          hidden = true,
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.defaults = opts.defaults or {}
+      opts.defaults.vimgrep_arguments = opts.defaults.vimgrep_arguments
+        or { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" }
+
+      -- Дополняем, а не заменяем стандартные аргументы
+      table.insert(opts.defaults.vimgrep_arguments, "--hidden")
+      table.insert(opts.defaults.vimgrep_arguments, "--glob=!.git")
+      table.insert(opts.defaults.vimgrep_arguments, "--glob=!node_modules")
+
+      opts.defaults.file_ignore_patterns = opts.defaults.file_ignore_patterns or {}
+      table.insert(opts.defaults.file_ignore_patterns, "node_modules/")
+      table.insert(opts.defaults.file_ignore_patterns, ".git/")
+
+      opts.pickers = opts.pickers or {}
+      opts.pickers.find_files = vim.tbl_deep_extend("force", opts.pickers.find_files or {}, {
+        hidden = true,
+      })
+    end,
   },
 }

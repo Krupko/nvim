@@ -22,6 +22,8 @@ return {
         "prisma-language-server",
         "intelephense",
         "php-cs-fixer",
+        "phpcbf",
+        "prisma-fmt",
         "phpstan",
         "psalm",
       },

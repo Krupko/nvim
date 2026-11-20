@@ -26,3 +26,7 @@ vim.keymap.set("n", "<leader>wl", "<cmd>WebappLint<CR>", { desc = "Webapp Lint" 
 -- Backend
 vim.keymap.set("n", "<leader>bd", "<cmd>BackendDev<CR>", { desc = "Backend Dev" })
 vim.keymap.set("n", "<leader>bb", "<cmd>BackendBuild<CR>", { desc = "Backend Build" })
+
+vim.keymap.set("n", "<leader>?", function()
+  vim.cmd("edit " .. vim.fn.stdpath("config") .. "/CHEATSHEET.md")
+end, { desc = "Open Cheatsheet" })

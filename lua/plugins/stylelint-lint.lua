@@ -1,21 +1,22 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
+    opts = function(_, opts)
+      opts.linters_by_ft = vim.tbl_deep_extend("force", opts.linters_by_ft or {}, {
         scss = { "stylelint" },
         css = { "stylelint" },
         sass = { "stylelint" },
         less = { "stylelint" },
-      },
-      linters = {
+      })
+
+      opts.linters = vim.tbl_deep_extend("force", opts.linters or {}, {
         stylelint = {
           cmd = "pnpm",
           args = { "exec", "stylelint", "--stdin", "--stdin-filename", "$FILENAME", "--formatter", "json" },
           stdin = true,
           stream = "stdout",
           ignore_exitcode = true,
-          parser = function(output, bufnr)
+          parser = function(output)
             local results = vim.fn.json_decode(output)
             if not results or #results == 0 then
               return {}
@@ -39,14 +40,12 @@ return {
             return diagnostics
           end,
         },
-      },
-    },
-    config = function(_, opts)
+      })
+    end,
+    config = function()
       local lint = require("lint")
-      lint.linters_by_ft = opts.linters_by_ft
-      lint.linters = opts.linters
 
-      -- Автоматический запуск при сохранении
+      -- Автоматический запуск при сохранении и выходе из insert
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
         pattern = { "*.css", "*.scss", "*.sass", "*.less" },
         callback = function()
@@ -54,7 +53,7 @@ return {
         end,
       })
 
-      -- Также запускаем при открытии файла
+      -- Запуск при открытии файла
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = { "*.css", "*.scss", "*.sass", "*.less" },
         callback = function()

@@ -4,10 +4,11 @@ return {
     lazy = false,
     init = function()
       -- Настройки vim-visual-multi
-      -- vim.g.VM_theme = "gruvbox"
       vim.g.VM_maps = {
-        ["Find Under"] = "<C-d>",
-        ["Find Subword Under"] = "<C-d>",
+        -- <C-d> больше не используется: он конфликтует с прокруткой в LazyVim.
+        -- Вместо него триггер вынесен на <leader>mc (см. ниже).
+        ["Find Under"] = "<leader>mc",
+        ["Find Subword Under"] = "<leader>mc",
         ["Add Cursor Down"] = "<C-S-down>",
         ["Add Cursor Up"] = "<C-S-up>",
         ["Select All"] = "<C-b>",
@@ -22,10 +23,7 @@ return {
       vim.g.VM_leader = "\\"
     end,
     config = function()
-      -- Отключаем стандартное поведение Ctrl-A в LazyVim
-      -- vim.keymap.del("n", "<C-a>")
-
-      -- Добавляем свои маппинги
+      -- Дополнительные маппинги
       vim.keymap.set("n", "<leader>mm", "<Plug>(VM-Select-All)", { desc = "Select all matches" })
       vim.keymap.set("n", "<leader>mn", "<Plug>(VM-Find-Under)", { desc = "Add cursor next" })
     end,

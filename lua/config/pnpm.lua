@@ -31,19 +31,6 @@ local function get_current_package()
   return nil
 end
 
--- local function run_pnpm_filter(cmd)
---   local pkg = get_current_package()
---   local full_cmd = pkg and string.format("pnpm --filter @ideanick/%s %s", pkg, cmd) or cmd
-
---   vim.system(full_cmd, { text = true }, function(obj)
---     if obj.code ~= 0 then
---       vim.notify("Command failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
---     else
---       vim.notify(obj.stdout or "Command executed successfully", vim.log.levels.INFO)
---     end
---   end)
--- end
-
 local function run_pnpm_filter(cmd)
   local pkg = get_current_package()
   local args = pkg and { "pnpm", "--filter", "@ideanick/" .. pkg, cmd } or { "pnpm", cmd }
@@ -72,7 +59,7 @@ vim.api.nvim_create_user_command("PnpmPackage", function()
 end, { desc = "Show current package" })
 
 vim.api.nvim_create_user_command("PnpmInstall", function()
-  vim.system("pnpm install", { text = true }, function(obj)
+  vim.system({ "pnpm", "install" }, { text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Install failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -82,7 +69,7 @@ vim.api.nvim_create_user_command("PnpmInstall", function()
 end, { desc = "PNPM Install" })
 
 vim.api.nvim_create_user_command("PnpmUpdate", function()
-  vim.system("pnpm update", { text = true }, function(obj)
+  vim.system({ "pnpm", "update" }, { text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Update failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -109,7 +96,7 @@ end, { desc = "Lint current package" })
 
 -- Webapp shortcuts
 vim.api.nvim_create_user_command("WebappDev", function()
-  vim.system("cd webapp && pnpm dev", { text = true }, function(obj)
+  vim.system({ "pnpm", "dev" }, { cwd = "webapp", text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Webapp dev failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -119,7 +106,7 @@ vim.api.nvim_create_user_command("WebappDev", function()
 end, { desc = "Webapp Dev" })
 
 vim.api.nvim_create_user_command("WebappBuild", function()
-  vim.system("cd webapp && pnpm build", { text = true }, function(obj)
+  vim.system({ "pnpm", "build" }, { cwd = "webapp", text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Webapp build failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -129,7 +116,7 @@ vim.api.nvim_create_user_command("WebappBuild", function()
 end, { desc = "Webapp Build" })
 
 vim.api.nvim_create_user_command("WebappLint", function()
-  vim.system("cd webapp && pnpm lint", { text = true }, function(obj)
+  vim.system({ "pnpm", "lint" }, { cwd = "webapp", text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Webapp lint failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -140,7 +127,7 @@ end, { desc = "Webapp Lint" })
 
 -- Backend shortcuts
 vim.api.nvim_create_user_command("BackendDev", function()
-  vim.system("cd backend && pnpm dev", { text = true }, function(obj)
+  vim.system({ "pnpm", "dev" }, { cwd = "backend", text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Backend dev failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -150,7 +137,7 @@ vim.api.nvim_create_user_command("BackendDev", function()
 end, { desc = "Backend Dev" })
 
 vim.api.nvim_create_user_command("BackendBuild", function()
-  vim.system("cd backend && pnpm build", { text = true }, function(obj)
+  vim.system({ "pnpm", "build" }, { cwd = "backend", text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("Backend build failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
@@ -161,7 +148,7 @@ end, { desc = "Backend Build" })
 
 -- TypeScript check
 vim.api.nvim_create_user_command("TsCheck", function()
-  vim.system("pnpm -r run typecheck", { text = true }, function(obj)
+  vim.system({ "pnpm", "-r", "run", "typecheck" }, { text = true }, function(obj)
     if obj.code ~= 0 then
       vim.notify("TypeScript check failed: " .. (obj.stderr or ""), vim.log.levels.ERROR)
     else
