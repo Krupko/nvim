@@ -4,7 +4,7 @@ return {
     opts = {
       keymap = {
         -- Используем "default", чтобы не смешивать со встроенной логикой "super-tab"
-        preset = "default",
+        preset = "enter",
 
         -- Подтверждение выбора
         ["<CR>"] = { "accept", "fallback" },
