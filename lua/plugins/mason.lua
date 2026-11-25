@@ -23,7 +23,6 @@ return {
         "intelephense",
         "php-cs-fixer",
         "phpcbf",
-        "prisma-fmt",
         "phpstan",
         "psalm",
       },
